@@ -7,7 +7,7 @@ const MovieSection = ({ movie }) => {
     <div className="movie-section">
       <div className="info">
         <h1 className="movie-title">
-          {movie.Title} <span className="year">06 May 2011</span>
+          {movie.Title} <span className="year">{movie.Released}</span>
         </h1>
         <span className="year">{movie.Rated}</span>
         <p>
