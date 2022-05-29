@@ -2,16 +2,14 @@ import React from "react";
 
 const Recents = ({ movie, setMovie }) => {
   const getMovie = () => {
-    fetch(`https://www.omdbapi.com/?i=${movie.id}&apikey=db94254e`)
+    fetch(`http://www.omdbapi.com/?apiKey=db94254e&i=${movie.id}`)
       .then((res) => {
         if (res.ok) {
           return res.json();
         }
       })
-      .then((data) => {
-        setMovie(data);
-      })
-      .catch((e) => console.log(e));
+      .then((data) => setMovie(data))
+      .catch((e) => alert("Error fetching movie"));
   };
 
   return (

@@ -6,25 +6,21 @@ const SearchSection = ({ setMovie }) => {
   const [recents, setRecents] = React.useState([]);
 
   const searchMovie = () => {
-    if (!title.trim()) return;
-    fetch(`https://www.omdbapi.com/?t=${title}&apikey=db94254e`)
+    if (!title.trim()) {
+      alert("You need to provide a title for a movie");
+      return;
+    }
+    fetch(`http://www.omdbapi.com/?apiKey=db94254e&t=${title}`)
       .then((res) => {
         if (res.ok) {
           return res.json();
         }
       })
       .then((data) => {
-        console.log(data);
-        if (data.Error) {
-          alert(data.Error);
-        } else {
-          setMovie(data);
-          setRecents([{ title: data.Title, id: data.imdbID }, ...recents]);
-        }
+        setMovie(data);
+        setRecents([{ title: data.Title, id: data.imdbID }, ...recents]);
       })
-      .catch((e) => {
-        alert("Error Searching for movie");
-      });
+      .catch((e) => alert("error fetching movie info"));
   };
   return (
     <div className="search-section">
